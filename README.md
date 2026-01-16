@@ -1,4 +1,4 @@
-https://zainzaina.github.io/hadafplatform.github.io/
+https://zainzaina.github.io/hadafplatform.github.io-main/
 
 🎯 منصة هدف - اختبار التخصصات الذكي
 
