@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل التخصصات - منصة هدف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-specializations">
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="هدف" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-main"></span>
+                    <span class="logo-sub">منصة التخصصات الذكية</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="test.html">الاختبار</a></li>
+                <li><a href="specializations.html" class="active">التخصصات</a></li>
+                <li><a href="success-stories.html">قصص النجاح</a></li>
+                <li><a href="about.html">عنا</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleHamburger()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- محتوى الصفحة -->
+    <div class="container">
+        <div class="page-header">
+            <h1>دليل التخصصات الشامل</h1>
+            <p>تعرّف على كل التخصصات المتاحة وتفاصيلها</p>
+        </div>
+
+        <div class="page-content">
+            <div class="spec-toolbar">
+                <div class="spec-search">
+                    <input id="specSearch" type="search" placeholder="ابحث عن تخصص (مثال: الطب، الذكاء الاصطناعي...)" autocomplete="off" />
+                </div>
+                <div class="spec-meta" id="specMeta"></div>
+            </div>
+            <div id="specializationsContainer" class="grid-3"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🎯 عن منصة هدف</h3>
+                <p>منصة تعليمية ذكية تساعدك على اكتشاف التخصص الجامعي المناسب.</p>
+            </div>
+            <div class="footer-section">
+                <h3>🔗 روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="test.html">الاختبار</a></li>
+                    <li><a href="about.html">عنا</a></li>
+                    <li><a href="contact.html">تواصل</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 تواصل</h3>
+                <ul>
+                    <li>📧 info@hedaf.com</li>
+                    <li>📱 +966 (1) 2345-6789</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 منصة هدف. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/test.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('specializationsContainer');
+            const searchInput = document.getElementById('specSearch');
+            const specMeta = document.getElementById('specMeta');
+
+            const svgDataUri = (svg) => {
+                const encoded = encodeURIComponent(svg)
+                    .replace(/%0A/g, '')
+                    .replace(/%20/g, ' ')
+                    .replace(/'/g, '%27')
+                    .replace(/"/g, '%22');
+                return `url("data:image/svg+xml,${encoded}")`;
+            };
+
+            const makeBg = (c1, c2, svg) => `linear-gradient(135deg, ${c1}, ${c2}), ${svgDataUri(svg)}`;
+
+            const specializationImages = {
+                'الطب': [
+                    'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80',
+                    'https://images.unsplash.com/photo-1576091160550-2173dba999e8?w=800&q=80',
+                    'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&q=80'
+                ],
+                'التمريض': [
+                    'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&q=80',
+                    'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&q=80',
+                    'https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=800&q=80'
+                ],
+                'هندسة البرمجيات': [
+                    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80',
+                    'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80',
+                    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80'
+                ],
+                'الأمن السيبراني': [
+                    'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80',
+                    'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80',
+                    'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80'
+                ],
+                'الذكاء الاصطناعي': [
+                    'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80',
+                    'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
+                    'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&q=80'
+                ],
+                'التصميم الجرافيكي': [
+                    'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
+                    'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
+                    'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80'
+                ],
+                'الإعلام الرقمي': [
+                    'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80',
+                    'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&q=80',
+                    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80'
+                ],
+                'الهندسة المدنية': [
+                    'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
+                    'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
+                    'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80'
+                ],
+                'التعليم': [
+                    'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
+                    'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80',
+                    'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80'
+                ],
+                'إدارة الأعمال': [
+                    'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+                    'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
+                    'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80'
+                ]
+            };
+
+            const themes = {
+                'الطب': {
+                    accent: '#ff4d6d',
+                    bg: makeBg(
+                        'rgba(255,77,109,0.92)',
+                        'rgba(91,54,255,0.70)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff" stop-opacity="0.18"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.04"/></linearGradient></defs><rect width="600" height="400" fill="url(#g)"/><g fill="none" stroke="#fff" stroke-opacity="0.28" stroke-width="14"><path d="M300 70v260"/><path d="M170 200h260"/></g><g fill="#fff" fill-opacity="0.10"><circle cx="120" cy="90" r="38"/><circle cx="520" cy="310" r="58"/></g></svg>`
+                    )
+                },
+                'التمريض': {
+                    accent: '#ff8fab',
+                    bg: makeBg(
+                        'rgba(255,143,171,0.92)',
+                        'rgba(102,126,234,0.65)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="transparent"/><g fill="none" stroke="#fff" stroke-opacity="0.26" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M300 320c-90-50-150-110-150-180 0-42 34-76 76-76 30 0 57 18 74 45 17-27 44-45 74-45 42 0 76 34 76 76 0 70-60 130-150 180z"/></g><g fill="#fff" fill-opacity="0.10"><circle cx="90" cy="310" r="44"/><circle cx="525" cy="95" r="38"/></g></svg>`
+                    )
+                },
+                'هندسة البرمجيات': {
+                    accent: '#00d4ff',
+                    bg: makeBg(
+                        'rgba(0,212,255,0.88)',
+                        'rgba(91,54,255,0.72)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="transparent"/><g fill="none" stroke="#fff" stroke-opacity="0.24" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M250 120l-70 80 70 80"/><path d="M350 120l70 80-70 80"/><path d="M310 110l-20 180"/></g><g fill="#fff" fill-opacity="0.10"><rect x="60" y="60" width="120" height="70" rx="18"/><rect x="420" y="280" width="140" height="80" rx="22"/></g></svg>`
+                    )
+                },
+                'الأمن السيبراني': {
+                    accent: '#38b000',
+                    bg: makeBg(
+                        'rgba(56,176,0,0.88)',
+                        'rgba(26,26,46,0.80)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="transparent"/><g fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="14" stroke-linejoin="round"><path d="M300 70l150 60v90c0 95-70 150-150 185-80-35-150-90-150-185v-90z"/><path d="M260 210a40 40 0 1 1 80 0v45h-80z"/><path d="M300 245v25"/></g><g fill="#fff" fill-opacity="0.10"><circle cx="115" cy="110" r="40"/><circle cx="520" cy="320" r="55"/></g></svg>`
+                    )
+                },
+                'الذكاء الاصطناعي': {
+                    accent: '#ffd700',
+                    bg: makeBg(
+                        'rgba(255,215,0,0.88)',
+                        'rgba(102,126,234,0.75)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="transparent"/><g fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="10" stroke-linecap="round"><rect x="210" y="110" width="180" height="180" rx="24"/><path d="M290 160h80"/><path d="M290 205h120"/><path d="M290 250h95"/><path d="M210 150h-40"/><path d="M210 205h-55"/><path d="M210 260h-45"/><path d="M390 150h40"/><path d="M390 205h55"/><path d="M390 260h45"/></g><g fill="#fff" fill-opacity="0.10"><circle cx="90" cy="310" r="50"/><circle cx="530" cy="90" r="38"/></g></svg>`
+                    )
+                },
+                'التصميم الجرافيكي': {
+                    accent: '#ff6d00',
+                    bg: makeBg(
+                        'rgba(255,109,0,0.90)',
+                        'rgba(118,75,162,0.72)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="transparent"/><g fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M210 300c0-80 60-150 150-150 30 0 55-25 55-55 0-30-25-55-55-55-30 0-55 25-55 55"/><path d="M210 300h80"/></g><g fill="#fff" fill-opacity="0.10"><circle cx="110" cy="110" r="44"/><circle cx="520" cy="310" r="60"/></g></svg>`
+                    )
+                },
+                'الإعلام الرقمي': {
+                    accent: '#5b36ff',
+                    bg: makeBg(
+                        'rgba(91,54,255,0.90)',
+                        'rgba(0,212,255,0.65)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="transparent"/><g fill="none" stroke="#fff" stroke-opacity="0.24" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><rect x="170" y="110" width="260" height="180" rx="24"/><path d="M290 160l80 40-80 40z"/><path d="M250 320h100"/></g><g fill="#fff" fill-opacity="0.10"><rect x="60" y="290" width="120" height="70" rx="20"/><circle cx="520" cy="90" r="38"/></g></svg>`
+                    )
+                },
+                'الهندسة المدنية': {
+                    accent: '#00b4d8',
+                    bg: makeBg(
+                        'rgba(0,180,216,0.88)',
+                        'rgba(26,26,46,0.78)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="transparent"/><g fill="none" stroke="#fff" stroke-opacity="0.24" stroke-width="12" stroke-linejoin="round"><path d="M120 300V160l80-50 80 50v140z"/><path d="M320 300V120l90-55 90 55v180z"/><path d="M160 210h80"/><path d="M360 190h100"/><path d="M360 230h100"/></g><g fill="#fff" fill-opacity="0.10"><circle cx="90" cy="100" r="40"/><circle cx="520" cy="330" r="56"/></g></svg>`
+                    )
+                },
+                'التعليم': {
+                    accent: '#2ec4b6',
+                    bg: makeBg(
+                        'rgba(46,196,182,0.90)',
+                        'rgba(102,126,234,0.70)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="transparent"/><g fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M180 130h170a40 40 0 0 1 40 40v140H220a40 40 0 0 0-40 40V130z"/><path d="M420 130H250a40 40 0 0 0-40 40v140h170a40 40 0 0 1 40 40V130z"/></g><g fill="#fff" fill-opacity="0.10"><circle cx="95" cy="310" r="46"/><circle cx="520" cy="90" r="36"/></g></svg>`
+                    )
+                },
+                'إدارة الأعمال': {
+                    accent: '#7c3aed',
+                    bg: makeBg(
+                        'rgba(124,58,237,0.90)',
+                        'rgba(255,215,0,0.62)',
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="transparent"/><g fill="none" stroke="#fff" stroke-opacity="0.24" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M160 300V170h70v130z"/><path d="M260 300V130h70v170z"/><path d="M360 300V200h70v100z"/><path d="M160 150c55-70 150-90 280-60"/><path d="M420 90l30 10-14 28"/></g><g fill="#fff" fill-opacity="0.10"><circle cx="110" cy="90" r="36"/><circle cx="520" cy="320" r="54"/></g></svg>`
+                    )
+                }
+            };
+
+            const specEntries = Object.keys(specializations).map(specName => ({
+                key: specName,
+                data: specializations[specName]
+            }));
+
+            const render = (query = '') => {
+                const q = (query || '').trim().toLowerCase();
+                container.innerHTML = '';
+
+                const filtered = specEntries.filter(({ key, data }) => {
+                    const hay = `${key} ${data.name} ${data.description} ${data.futureCareer}`.toLowerCase();
+                    return !q || hay.includes(q);
+                });
+
+                if (specMeta) {
+                    specMeta.textContent = `المعروض: ${filtered.length} من ${specEntries.length}`;
+                }
+
+                filtered.forEach(({ key, data }, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'spec-card';
+                    const theme = themes[key] || {};
+                    if (theme.bg) card.style.setProperty('--spec-bg', theme.bg);
+                    if (theme.accent) card.style.setProperty('--spec-accent', theme.accent);
+                    card.style.animationDelay = `${index * 0.1}s`;
+
+                    const images = specializationImages[key] || [];
+                    const randomDelay = Math.random() * 0.5;
+                    card.style.animationDelay = `${(index * 0.15) + randomDelay}s`;
+                    card.setAttribute('data-index', index);
+                    
+                    let imageSlides = '';
+                    if (images.length > 0) {
+                        imageSlides = images.map((img, imgIndex) => 
+                            `<img src="${img}" alt="${data.name}" class="spec-card__image-slide ${imgIndex === 0 ? 'active' : ''}" loading="lazy" data-slide="${imgIndex}">`
+                        ).join('');
+                    }
+                    
+                    card.innerHTML = `
+                        <div class="spec-card__image-wrapper">
+                            ${imageSlides}
+                            <div class="spec-card__image-indicators">
+                                ${images.map((_, idx) => `<span class="indicator ${idx === 0 ? 'active' : ''}" data-slide="${idx}"></span>`).join('')}
+                            </div>
+                        </div>
+                        <div class="spec-card__overlay"></div>
+                        <div class="spec-card__content">
+                            <div class="spec-card__top">
+                                <div class="spec-card__emoji">${data.emoji}</div>
+                                <div class="spec-card__title">
+                                    <h3>${data.name}</h3>
+                                    <div class="spec-card__badges">
+                                        <span class="spec-badge">${data.duration}</span>
+                                        <span class="spec-badge">${data.difficulty}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spec-card__desc">${data.description}</p>
+                            <div class="spec-card__footer">
+                                <div class="spec-card__meta">المسارات: ${data.futureCareer}</div>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                    
+                    // إضافة Intersection Observer للسلايدات
+                    const imageWrapper = card.querySelector('.spec-card__image-wrapper');
+                    if (imageWrapper && images.length > 1) {
+                        let currentSlide = 0;
+                        let slideInterval;
+                        
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    // بدء السلايد عند الظهور
+                                    const startSlideshow = () => {
+                                        slideInterval = setInterval(() => {
+                                            const slides = card.querySelectorAll('.spec-card__image-slide');
+                                            const indicators = card.querySelectorAll('.indicator');
+                                            
+                                            slides[currentSlide].classList.remove('active');
+                                            indicators[currentSlide].classList.remove('active');
+                                            
+                                            currentSlide = (currentSlide + 1) % slides.length;
+                                            
+                                            slides[currentSlide].classList.add('active');
+                                            indicators[currentSlide].classList.add('active');
+                                        }, 3000 + Math.random() * 2000); // عشوائي بين 3-5 ثواني
+                                    };
+                                    
+                                    startSlideshow();
+                                    
+                                    // إيقاف عند الخروج من الشاشة
+                                    observer.unobserve(entry.target);
+                                }
+                            });
+                        }, { threshold: 0.3 });
+                        
+                        observer.observe(imageWrapper);
+                    }
+                });
+            };
+
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => render(e.target.value));
+            }
+
+            render('');
+        });
+    </script>
+</body>
+</html>

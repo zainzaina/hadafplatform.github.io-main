@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة هدف - اختبار التخصصات الذكي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- --------- شريط التنقل --------- -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="هدف" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-main"></span>
+                    <span class="logo-sub">منصة التخصصات الذكية</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="test.html">الاختبار</a></li>
+                <li><a href="specializations.html">التخصصات</a></li>
+                <li><a href="success-stories.html">قصص النجاح</a></li>
+                <li><a href="about.html">عنا</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleHamburger()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- --------- الصفحة الرئيسية --------- -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80" alt="طلاب يدرسون" class="hero-image" loading="lazy">
+            </div>
+            <h1>منصة <span class="brand">هدف</span></h1>
+            <p class="subtitle">اختبر نفسك واعرف تخصصك المثالي</p>
+            <p class="description">اكتشف التخصص الذي يناسبك بناءً على شخصيتك وميولك وأسلوب تفكيرك</p>
+            <a href="test.html" class="btn btn-primary btn-large">ابدأ الاختبار الآن</a>
+        </div>
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="icon target">🎯</div>
+                <h3>دقيق وموثوق</h3>
+                <p>نظام متطور لتحليل ميولك بدقة عالية</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">⏱️</div>
+                <h3>سريع</h3>
+                <p>استكمل الاختبار في أقل من 10 دقائق</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">📊</div>
+                <h3>نتائج واضحة</h3>
+                <p>احصل على نِسَب توافق مفصلة وشاملة</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- --------- Footer --------- -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🎯 عن منصة هدف</h3>
+                <p>منصة تعليمية ذكية تساعدك على اكتشاف التخصص الجامعي المناسب بناءً على ميولك وشخصيتك.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">𝕏</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="LinkedIn">in</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>🔗 الروابط السريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="test.html">الاختبار</a></li>
+                    <li><a href="specializations.html">التخصصات</a></li>
+                    <li><a href="about.html">عنا</a></li>
+                    <li><a href="contact.html">تواصل</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 تواصل معنا</h3>
+                <ul>
+                    <li>📧 <a href="mailto:info@hedaf.com">info@hedaf.com</a></li>
+                    <li>📱 <a href="tel:966123456789">+966 (1) 2345-6789</a></li>
+                    <li>🕐 السبت - الخميس: 8ص - 6م</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>ℹ️ معلومات</h3>
+                <ul>
+                    <li><a href="#">سياسة الخصوصية</a></li>
+                    <li><a href="#">الشروط والأحكام</a></li>
+                    <li><a href="#">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 منصة هدف. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

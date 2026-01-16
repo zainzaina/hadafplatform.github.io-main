@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا - منصة هدف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="هدف" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-main"></span>
+                    <span class="logo-sub">منصة التخصصات الذكية</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="test.html">الاختبار</a></li>
+                <li><a href="specializations.html">التخصصات</a></li>
+                <li><a href="success-stories.html">قصص النجاح</a></li>
+                <li><a href="about.html">عنا</a></li>
+                <li><a href="contact.html" class="active">تواصل معنا</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleHamburger()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- محتوى الصفحة -->
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-image">
+                <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1200&q=80" alt="تواصل معنا" class="header-image" loading="lazy">
+            </div>
+            <h1>تواصل معنا</h1>
+            <p>نحن هنا للإجابة على أسئلتك واستقبال ملاحظاتك</p>
+        </div>
+
+        <div class="page-content">
+            <div class="content-section">
+                <h2>💬 استمارة التواصل</h2>
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" required placeholder="أدخل بريدك الإلكتروني">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك (اختياري)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">الموضوع</label>
+                        <input type="text" id="subject" name="subject" required placeholder="ما موضوع استفسارك؟">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">الرسالة</label>
+                        <textarea id="message" name="message" required placeholder="اكتب رسالتك هنا..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">إرسال الرسالة</button>
+                </form>
+            </div>
+
+            <div class="content-section">
+                <h2>📍 معلومات التواصل</h2>
+                <div class="grid-3" style="margin-top: 20px;">
+                    <div class="item-card">
+                        <h3>📧 البريد الإلكتروني</h3>
+                        <p><a href="mailto:info@hedaf.com" style="color: #667eea;">info@hedaf.com</a></p>
+                    </div>
+                    <div class="item-card">
+                        <h3>📱 الهاتف</h3>
+                        <p><a href="tel:966123456789" style="color: #667eea;">+966 (1) 2345-6789</a></p>
+                    </div>
+                    <div class="item-card">
+                        <h3>🕐 ساعات العمل</h3>
+                        <p>السبت - الخميس: 8 صباحاً - 6 مساءً</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>🤝 تابعنا على وسائل التواصل</h2>
+                <p style="text-align: center; margin-top: 20px;">
+                    <a href="#" style="color: #667eea; margin: 0 10px; font-size: 1.2rem;">Facebook</a> | 
+                    <a href="#" style="color: #667eea; margin: 0 10px; font-size: 1.2rem;">Twitter</a> | 
+                    <a href="#" style="color: #667eea; margin: 0 10px; font-size: 1.2rem;">Instagram</a> | 
+                    <a href="#" style="color: #667eea; margin: 0 10px; font-size: 1.2rem;">LinkedIn</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🎯 عن منصة هدف</h3>
+                <p>منصة تعليمية ذكية لاختيار التخصص الجامعي المناسب.</p>
+            </div>
+            <div class="footer-section">
+                <h3>🔗 روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="test.html">الاختبار</a></li>
+                    <li><a href="about.html">عنا</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 تواصل</h3>
+                <ul>
+                    <li>📧 info@hedaf.com</li>
+                    <li>📱 +966 (1) 2345-6789</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 منصة هدف.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('شكراً لتواصلك معنا! سنرد عليك قريباً.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

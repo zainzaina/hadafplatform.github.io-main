@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>النتائج - منصة هدف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="هدف" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-main"></span>
+                    <span class="logo-sub">منصة التخصصات الذكية</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="test.html">الاختبار</a></li>
+                <li><a href="specializations.html">التخصصات</a></li>
+                <li><a href="success-stories.html">قصص النجاح</a></li>
+                <li><a href="about.html">عنا</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleHamburger()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- محتوى الصفحة -->
+    <div class="container">
+        <div class="results-header">
+            <h2>نتائجك</h2>
+            <p>إليك التخصصات التي تناسبك بناءً على إجاباتك</p>
+        </div>
+
+        <div id="resultsContainer" class="results-grid"></div>
+
+        <div class="results-buttons">
+            <a href="index.html" class="btn btn-secondary">العودة للرئيسية</a>
+            <a href="test.html" class="btn btn-primary">إعادة الاختبار</a>
+        </div>
+
+        <div class="legal-notice">
+            <p><strong>⚠️ تنويه قانوني:</strong> نتائج الاختبار إرشادية فقط ولا تمثل قرارًا نهائيًا. يُنصح بمراجعة مختصين أكاديميين.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🎯 عن منصة هدف</h3>
+                <p>منصة تعليمية ذكية لاختيار التخصص الجامعي المناسب.</p>
+            </div>
+            <div class="footer-section">
+                <h3>🔗 روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="test.html">الاختبار</a></li>
+                    <li><a href="about.html">عنا</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 تواصل</h3>
+                <ul>
+                    <li>📧 info@hedaf.com</li>
+                    <li>📱 +966 (1) 2345-6789</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 منصة هدف.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/test.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const resultsData = getResults();
+            
+            if (!resultsData) {
+                document.getElementById('resultsContainer').innerHTML = '<p style="text-align: center; color: white; padding: 40px;">لم تأخذ الاختبار بعد. <a href="test.html" style="color: #ffd700;">ابدأ الاختبار الآن</a></p>';
+                return;
+            }
+
+            // استعادة الدرجات
+            scores = resultsData.scores;
+            userAnswers = resultsData.answers;
+
+            // عرض النتائج
+            const sortedSpecs = Object.keys(specializations)
+                .map(spec => ({
+                    name: spec,
+                    score: scores[spec],
+                    percentage: calculatePercentage(spec)
+                }))
+                .sort((a, b) => b.score - a.score);
+
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '';
+
+            sortedSpecs.forEach(spec => {
+                const percentage = spec.percentage;
+                const card = document.createElement('div');
+                card.className = 'result-card';
+                card.style.cursor = 'pointer';
+                
+                const description = specializations[spec.name].description;
+                card.innerHTML = `
+                    <h4>${specializations[spec.name].emoji} ${spec.name}</h4>
+                    <p>${description}</p>
+                    <div class="result-percentage">${percentage}%</div>
+                    <div class="percentage-bar">
+                        <div class="percentage-fill" style="width: ${percentage}%"></div>
+                    </div>
+                `;
+                
+                resultsContainer.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
